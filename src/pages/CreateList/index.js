@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export function CreateList() {
+  const navigate = useNavigate();
+
   const [item, setItem] = useState({
     item: "",
     quantity: "",
@@ -15,10 +19,6 @@ export function CreateList() {
   });
   console.log(state);
 
-  //   useEffect(() => {
-  //     async function fetchList
-  //   })
-
   function handleChangeState(e) {
     setState({ ...state, [e.target.name]: e.target.value });
   }
@@ -28,14 +28,22 @@ export function CreateList() {
   }
   console.log(item);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
+    try {
+      await axios.post("https://ironrest.herokuapp.com/Paulo", state);
 
-    axios.post("https://ironrest.herokuapp.com/Paulo", state);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
     <>
+      <div>
+        <Toaster />
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="d-flex flex-column m-5">
           <h1 className="d-flex mb-5">Crie sua lista de compras</h1>
@@ -57,7 +65,7 @@ export function CreateList() {
           />
         </div>
         <div className="d-flex flex-column m-5 ">
-          <h2 className="mb-5">Inclua os itens desejados</h2>
+          <h2 className="mb-5">Insira os itens desejados</h2>
           <label htmlFor="item-input">Item:</label>
           <input
             name="item"
@@ -65,7 +73,6 @@ export function CreateList() {
             type="text"
             onChange={handleChangeItem}
             value={item.item}
-            required
           />
           <label htmlFor="quantity">Quantidade:</label>
           <input
@@ -89,6 +96,7 @@ export function CreateList() {
             className="btn btn-primary m-5"
             onClick={(e) => {
               e.preventDefault();
+              toast.success("Seu item foi incluído com sucesso !");
               setState({
                 ...state,
                 shoppingList: [...state.shoppingList, item],

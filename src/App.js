@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/create-list" element={<CreateList />} />
-        <Route path="/list" element={<List />} />
-        <Route path="/edit-list" element={<EditList />} />
+        <Route path="/list/:id" element={<List />} />
+        <Route path="/edit-list/:id" element={<EditList />} />
       </Routes>
     </>
   );
