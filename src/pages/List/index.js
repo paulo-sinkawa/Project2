@@ -7,9 +7,6 @@ export function List() {
   const navigate = useNavigate();
   const [list, setList] = useState({});
   const [loading, setLoading] = useState(true);
-  console.log(list);
-  console.log("--------->", id);
-  console.log(useParams);
 
   useEffect(() => {
     async function fetchList() {
@@ -26,6 +23,7 @@ export function List() {
       }
     }
 
+    console.log(setList);
     fetchList();
   }, [id]);
 
@@ -42,10 +40,25 @@ export function List() {
     <h1>Carregando a pagina ...</h1>
   ) : (
     <>
-      <h1>Lista de {list.name} </h1>
-      <h2>{list.nameOfYourList}</h2>
+      <div className="m-5">
+        <h1>Lista de {list.name} </h1>
+        <h2>Nome da lista: {list.nameOfYourList}</h2>
+        <h3 className="mt-5">Itens adicionados: </h3>
+      </div>
 
-      <Link to={`/edit-list/${id}`} className="btn btn-primary">
+      {list.shoppingList.map((currentList) => {
+        return (
+          <>
+            <div className="m-5">
+              <p>Item: {currentList.item} </p>
+              <p>Quantidade: {currentList.quantity} </p>
+              <p>Valor: {currentList.value} </p>
+            </div>
+          </>
+        );
+      })}
+
+      <Link to={`/edit-list/${id}`} className="btn btn-primary m-5">
         Editar
       </Link>
 
