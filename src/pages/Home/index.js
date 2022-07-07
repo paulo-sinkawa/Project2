@@ -16,21 +16,21 @@ export function Home() {
 
   return (
     <>
-      <h1>Projeto React</h1>
-      <Link to="/create-list" className="btn btn-primary">
+      <Link to="/create-list" className="btn btn-primary m-5">
         Crie sua lista de compras
       </Link>
 
-      <h2>Listas criadas</h2>
+      <h2 className="m-5">Listas criadas</h2>
 
       {list.map((currentList) => {
         return (
-          <Card
-            name={currentList.name}
-            id={currentList._id}
-            nameOfYourList={currentList.nameOfYourList}
-            key={currentList.list}
-          />
+          <div key={currentList.name}>
+            <Card
+              name={currentList.name}
+              id={currentList._id}
+              nameOfYourList={currentList.nameOfYourList}
+            />
+          </div>
         );
       })}
     </>

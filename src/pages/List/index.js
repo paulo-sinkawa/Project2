@@ -19,7 +19,6 @@ export function List() {
         setLoading(false);
       } catch (err) {
         console.log(err);
-        navigate("/error");
       }
     }
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 export function EditList() {
   const { id } = useParams();
