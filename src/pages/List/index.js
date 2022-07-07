@@ -48,13 +48,11 @@ export function List() {
 
       {list.shoppingList.map((currentList) => {
         return (
-          <>
-            <div className="m-5">
-              <p>Item: {currentList.item} </p>
-              <p>Quantidade: {currentList.quantity} </p>
-              <p>Valor: {currentList.value} </p>
-            </div>
-          </>
+          <div className="m-5" key={currentList.item}>
+            <p>Item: {currentList.item} </p>
+            <p>Quantidade: {currentList.quantity} </p>
+            <p>Valor: {currentList.unitValue} </p>
+          </div>
         );
       })}
 

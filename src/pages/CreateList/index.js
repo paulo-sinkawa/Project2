@@ -17,7 +17,6 @@ export function CreateList() {
     nameOfYourList: "",
     shoppingList: [],
   });
-  console.log(state);
 
   function handleChangeState(e) {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -26,7 +25,6 @@ export function CreateList() {
   function handleChangeItem(e) {
     setItem({ ...item, [e.target.name]: e.target.value });
   }
-  console.log(item);
 
   async function handleSubmit(e) {
     e.preventDefault();

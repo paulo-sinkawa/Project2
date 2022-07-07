@@ -9,7 +9,6 @@ export function Home() {
   useEffect(() => {
     async function fetchList() {
       const response = await axios.get("https://ironrest.herokuapp.com/Paulo");
-      console.log(response.data);
       setList([...response.data]);
     }
     fetchList();
@@ -30,6 +29,7 @@ export function Home() {
             name={currentList.name}
             id={currentList._id}
             nameOfYourList={currentList.nameOfYourList}
+            key={currentList.list}
           />
         );
       })}

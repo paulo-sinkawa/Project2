@@ -16,8 +16,6 @@ export function EditList() {
     unitValue: "",
   });
 
-  console.log(">>>>>>>>", state);
-
   useEffect(() => {
     async function fetchList() {
       try {
@@ -87,19 +85,14 @@ export function EditList() {
         </div>
 
         <div className="m-5">
-          <p>Aqui sera renderizado os itens ja salvos para edicao</p>
-          <p>tambem precisa de um botao aqui para deletar a lista</p>
-
           {state.shoppingList.length > 0 ? (
             state.shoppingList.map((currentList) => {
               return (
-                <>
-                  <div className="m-5">
-                    <p>Item: {currentList.item} </p>
-                    <p>Quantidade: {currentList.quantity} </p>
-                    <p>Valor: {currentList.value} </p>
-                  </div>
-                </>
+                <div className="m-5" key={currentList.item}>
+                  <p>Item: {currentList.item} </p>
+                  <p>Quantidade: {currentList.quantity} </p>
+                  <p>Valor: {currentList.unitValue} </p>
+                </div>
               );
             })
           ) : (
